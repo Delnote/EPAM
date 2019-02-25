@@ -11,8 +11,9 @@ public class NewNote {
         Scanner input = new Scanner(in);
         System.out.println("Введите текст заметки, не более 30 символов: ");
         String row = input.next();
-        while (row.length() <= 30 && row.length() == 0) {
+        while (row.length() > 30 || row.length() == 0) {
             System.out.println("Упс..... попробуйте еще: ");
+            row = input.next();
         }
         System.out.println("Хотите еще? (Y/N)");
         moreText();
