@@ -2,20 +2,22 @@ package notebook;
 
 import java.util.Scanner;
 
-public class NewBook {
+public class NewBookSize {
 
-    protected static void size() {
+    public static int size;
+
+    protected int size() {
 
         Scanner input = new Scanner(System.in);
         System.out.println("Введите начальнй размер блокнота, не более 5 строк: ");
-        int rows = input.nextInt();
-        while (rows <= 0 || rows > 5) {
+        size = input.nextInt();
+        while (size <= 0 || size > 5) {
             System.out.println("Неправильный размер, попробуйте еще раз: ");
-            rows = input.nextInt();
+            size = input.nextInt();
         }
-        String[] notebook = new String[rows];
+
+        return size;
+
     }
-
-
 
 }

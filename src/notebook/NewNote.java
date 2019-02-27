@@ -4,24 +4,31 @@ import java.util.Scanner;
 
 import static java.lang.System.in;
 
+
 public class NewNote {
 
-    protected static void text() {
+    String row = "";
+
+
+    public String text() {
 
         Scanner input = new Scanner(in);
         System.out.println("Введите текст заметки, не более 30 символов: ");
-        String row = input.next();
+        row = input.next();
         while (row.length() > 30 || row.length() == 0) {
             System.out.println("Упс..... попробуйте еще: ");
             row = input.next();
         }
+
+
         System.out.println("Хотите еще? (Y/N)");
         moreText();
+
+        return row;
+
     }
 
-
-
-    protected static void moreText() {
+     protected void moreText() {
 
         Scanner input = new Scanner(in);
         String rowYes = input.next();
@@ -29,6 +36,7 @@ public class NewNote {
             text();
         } else if (rowYes.equalsIgnoreCase("n")) {
             System.out.println("Спасибо, пока..");
+
         } else {
             System.out.println("Не правильный ввод!");
             moreText();
