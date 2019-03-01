@@ -7,8 +7,8 @@ import static java.lang.System.in;
 
 public class NewNote {
 
-    String row = "";
 
+    String row = "";
 
     public String text() {
 
@@ -19,9 +19,10 @@ public class NewNote {
             System.out.println("Упс..... попробуйте еще: ");
             row = input.next();
         }
+        NewBookSize temp = new NewBookSize();
+        temp.notebookFilling(row);
 
-
-        System.out.println("Хотите еще? (Y/N)");
+        System.out.println("Хотите добавить? (Y/N)");
         moreText();
 
         return row;
@@ -36,11 +37,13 @@ public class NewNote {
             text();
         } else if (rowYes.equalsIgnoreCase("n")) {
             System.out.println("Спасибо, пока..");
-
+            NewBookSize temp = new NewBookSize();
+            temp.printBook();
         } else {
             System.out.println("Не правильный ввод!");
             moreText();
         }
     }
+
 
 }
