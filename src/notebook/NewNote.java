@@ -19,15 +19,15 @@ public class NewNote {
             System.out.println("Упс..... попробуйте еще: ");
             row = input.next();
         }
+
         NewBookSize temp = new NewBookSize();
         temp.notebookFilling(row);
 
-        System.out.println("Хотите добавить? (Y/N)");
-        moreText();
-
+        temp.printBook();
         return row;
 
     }
+
 
      protected void moreText() {
 
@@ -37,8 +37,6 @@ public class NewNote {
             text();
         } else if (rowYes.equalsIgnoreCase("n")) {
             System.out.println("Спасибо, пока..");
-            NewBookSize temp = new NewBookSize();
-            temp.printBook();
         } else {
             System.out.println("Не правильный ввод!");
             moreText();

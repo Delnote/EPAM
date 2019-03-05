@@ -4,38 +4,43 @@ import java.util.Scanner;
 
 public class NewBookSize extends NewNote {
 
-    int size;
-    String[] notebook = new String[size];
+    static int size;
+    private String[] notebook = new String[size];
 
     protected int size() {
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("Введите начальный размер блокнота, не более 5 строк: ");
-        size = input.nextInt();
-        while (size <= 0 || size > 5) {
-            System.out.println("Неправильный размер, попробуйте еще раз: ");
-            size = input.nextInt();
-        }
-
-        text();
+        Scanner sc = new Scanner(System.in);
+        do {
+            System.out.println("Введите начальную длину блокнота не более 5 строк:");
+            while (!sc.hasNextInt()) {
+                System.out.println("Это не число!");
+                sc.next();
+            }
+            size = sc.nextInt();
+        } while (size <= 0 || size > 5);
 
         return size;
-
     }
 
-
-    protected String[] notebookFilling (String notes) {
+    protected void notebookFilling(String notes) {
         int i = 0;
-        while (i < size && notebook[i] == null) {
+        while (i < notebook.length && notebook[i] == null)  {
             notebook[i] = notes;
         }
+        /*       for (int i = 0; i < notebook.length; i++) {
+            if (notebook[i] == null) {
+                notebook[i] = notes;
+            }
 
-        return notebook;
+        }
+*/
+        System.out.println("Хотите добавить? (Y/N)");
+        moreText();
     }
 
-    public void printBook () {
+    protected void printBook() {
         for (int i = 0; i < notebook.length; i++) {
-            System.out.println("№ " + i + ".  " + notebook[i]);
+            System.out.println("№ " + (i + 1) + ".  " + notebook[i]);
         }
 
     }
