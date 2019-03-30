@@ -7,6 +7,8 @@ public class CreateNotebook {
     private String row;
     private int noteNumber;
     private static String[] notebook = new String[0];
+
+
 //    private String[] bufferNotebook = new String[1];
 
 
@@ -25,6 +27,7 @@ public class CreateNotebook {
 //  adding rows to the notebook
 
     protected void notebookAddRow () {
+
         String[] bufferNotebook = {row};
         notebook = Arrays.copyOf(notebook, notebook.length + 1);
         System.arraycopy(bufferNotebook, 0, notebook, notebook.length - 1, 1);

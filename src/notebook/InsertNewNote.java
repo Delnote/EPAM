@@ -18,7 +18,11 @@ public class InsertNewNote {
             System.out.println("Упс..... попробуйте еще: ");
             newRow = input.nextLine();
         }
-        CreateNotebook createNotebook = new CreateNotebook (newRow);
+
+        Note note = new Note();
+        note.setNote(newRow);
+
+        CreateNotebook createNotebook = new CreateNotebook (note.getNote());
         createNotebook.notebookAddRow();
         moreText();
     }
