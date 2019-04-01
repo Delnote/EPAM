@@ -55,6 +55,7 @@ public class InsertNewNote {
             }
             System.out.println("Удалить запись:");
             int delNoteNumber;
+
 //  validating number of removing note
             do {
                 while (!input.hasNextInt()) {
