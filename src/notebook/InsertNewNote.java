@@ -12,6 +12,12 @@ public class InsertNewNote {
 //  input row in notebook
 
         Scanner input = new Scanner(in);
+        System.out.println("Введите текст заголовка, не более 10 символов: ");
+        String newHeader = input.nextLine();
+        while (newHeader.length() > 10 || newHeader.length() == 0) {
+            System.out.println("Упс..... попробуйте еще: ");
+            newHeader = input.nextLine();
+        }
         System.out.println("Введите текст заметки, не более 30 символов: ");
         String newRow = input.nextLine();
         while (newRow.length() > 30 || newRow.length() == 0) {
@@ -19,16 +25,12 @@ public class InsertNewNote {
             newRow = input.nextLine();
         }
 
-        Note note = new Note();
-        note.setNote(newRow);
-
-        CreateNotebook createNotebook = new CreateNotebook (note.getNote());
-        createNotebook.notebookAddRow();
+        crNotebook.notebookAddRow(new Note(newHeader, newRow));
         moreText();
     }
 //  suggestion to add more rows
 
-    private void moreText() {
+    protected void moreText() {
         System.out.println("Хотите ввести следующую заметку? (y/n)");
         Scanner input = new Scanner(in);
         String rowYes = input.next();
@@ -44,14 +46,14 @@ public class InsertNewNote {
     }
 //  suggestion to remove rows
 
-    private void lessText() {
+    public void lessText() {
         System.out.println("Удалить заметку? (y/n)");
         Scanner input = new Scanner(in);
         String rowYes = input.next();
         if (rowYes.equalsIgnoreCase("y")) {
             System.out.println("Ваш блокнот:");
             for (int i = 0; i < crNotebook.getNotebook().length; i++) {
-                System.out.println((i + 1) + ". " + crNotebook.getNotebook()[i]);
+                System.out.printf("%d. \t Header: \t %s \n \t Text: \t %s \n", (i + 1), crNotebook.getNotebook()[i].getHeader(), crNotebook.getNotebook()[i].getText());
             }
             System.out.println("Удалить запись:");
             int delNoteNumber;
@@ -65,17 +67,15 @@ public class InsertNewNote {
                 delNoteNumber = input.nextInt();
             } while (delNoteNumber <= 0 || delNoteNumber > crNotebook.getNotebook().length);
 
-            CreateNotebook createNotebook = new CreateNotebook (delNoteNumber);
-            createNotebook.notebookDelRow();
+            new CreateNotebook (delNoteNumber).notebookDelRow();
             if (crNotebook.getNotebook().length > 0) {
                 System.out.println("Заметка удалена, хотите удалить еще одну?");
                 lessText();
             } else {
                 System.out.println("Все записи удалены!");
             }
-//            System.out.println(Arrays.toString(crNotebook.getNotebook()));
         } else if (rowYes.equalsIgnoreCase("n")) {
-            System.out.println("Ваш блокнот сохранен.");
+            System.out.println("Ваш блокнот сохранен, спасибо.");
         } else {
             System.out.println("Не правильный ввод!");
 

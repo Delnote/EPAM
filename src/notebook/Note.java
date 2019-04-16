@@ -2,14 +2,19 @@ package notebook;
 
 public class Note {
 
-    private String note;
+    private String text;
+    private String header;
 
-    public String getNote() {
-        return note;
+    public Note(String header, String text) {
+        this.text = text;
+        this.header = header;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public String getText() {
+        return text;
     }
 
+    public String getHeader() {
+        return header;
+    }
 }
